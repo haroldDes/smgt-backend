@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMGT | Dashboard Investigativo</title>
+    <link rel="stylesheet" href="./css/panel.css?v=20260527-ui5">
+</head>
+<body>
+    <div id="pantalla-carga" class="pantalla-carga" aria-hidden="true">
+        <div class="pantalla-carga__marca">
+            <div class="pantalla-carga__logo">SM</div>
+            <div>
+                <p class="pantalla-carga__kicker">Sistema Modular de Gestion Investigativa</p>
+                <strong class="pantalla-carga__titulo">SMGT</strong>
+            </div>
+        </div>
+        <div class="pantalla-carga__barra">
+            <span class="pantalla-carga__barra-activa"></span>
+        </div>
+    </div>
+    <div class="fondo-decorativo"></div>
+    <div class="contenedor-general">
+        <header class="hero">
+            <div class="hero__principal">
+                <div class="hero__encabezado">
+                    <div class="hero__copy">
+                        <p class="hero__kicker">SMGT | tablero investigativo modular</p>
+                        <h1 id="hero-titulo" class="hero__titulo">Panel SMGT.</h1>
+                        <p id="hero-texto" class="hero__texto">
+                            Grupos, seguimiento y publicaciones en una sola vista.
+                        </p>
+                    </div>
+                    <div class="hero__estado">
+                        <span id="insignia-modo" class="insignia insignia--ok">Sincronizando datos</span>
+                        <p class="hero__estado-titulo">Base operativa</p>
+                        <p class="hero__estado-texto">Usuarios, grupos, publicaciones y seguimiento dentro de un mismo flujo de trabajo.</p>
+                        <div class="hero__sellos">
+                            <span class="hero__sello">Roles</span>
+                            <span class="hero__sello">Tablero</span>
+                            <span class="hero__sello">Reportes</span>
+                            <span class="hero__sello">Actividad real</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero__acciones">
+                    <div id="panel-resumen-global" class="resumen-hero"></div>
+                </div>
+            </div>
+            <div class="hero__lateral">
+                <div class="hero__nota">
+                    <p class="hero__nota-titulo">Capas de trabajo</p>
+                    <div class="hero__pasos">
+                        <article class="hero__paso">
+                            <span>01</span>
+                            <div>
+                                <strong>Ingreso</strong>
+                                <p>Acceso por director, tutor y estudiante.</p>
+                            </div>
+                        </article>
+                        <article class="hero__paso">
+                            <span>02</span>
+                            <div>
+                                <strong>Tablero</strong>
+                                <p>Publicaciones, etapas y lectura del avance.</p>
+                            </div>
+                        </article>
+                        <article class="hero__paso">
+                            <span>03</span>
+                            <div>
+                                <strong>Gestion</strong>
+                                <p>Solicitudes, comentarios, ranking y reportes.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                    <div class="hero__mini-board">
+                        <div class="hero__mini-board-head">
+                            <strong>Muro principal</strong>
+                            <span>2 etapas</span>
+                        </div>
+                        <div class="hero__mini-columns">
+                            <div class="hero__mini-column">
+                                <strong>Propuesta</strong>
+                                <small>Aportes visibles del tablero</small>
+                            </div>
+                            <div class="hero__mini-column">
+                                <strong>Revision</strong>
+                                <small>Aportes pendientes de revisar</small>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </header>
+
+        <div id="mensaje-global" class="mensaje-global oculto"></div>
+
+        <section id="panel-login" class="panel-login oculto" aria-hidden="true">
+            <div class="panel-login__fondo" data-accion="cerrar-login"></div>
+            <div class="panel-login__ventana" role="dialog" aria-modal="true" aria-labelledby="login-titulo">
+                <button type="button" class="panel-login__cerrar" data-accion="cerrar-login" aria-label="Cerrar acceso">×</button>
+                <div class="bloque-titulo">
+                    <div>
+                        <p class="bloque-titulo__kicker">Acceso</p>
+                        <h2 id="login-titulo">Inicio de sesion</h2>
+                        <p class="texto-suave">Ingresa con tu rol para activar acciones, publicaciones y gestion del tablero.</p>
+                    </div>
+                </div>
+                <form id="form-login" class="formulario-grid">
+                    <label>
+                        <span>Correo</span>
+                        <input type="email" name="correo" placeholder="usuario@dominio.cl" required>
+                    </label>
+                    <label>
+                        <span>Clave</span>
+                        <input type="password" name="clave" placeholder="Tu clave" required>
+                    </label>
+                    <div class="formulario-acciones">
+                        <button type="submit" class="boton boton--primario">Iniciar sesion</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="workspace-bar">
+            <article class="tarjeta tarjeta--acceso-superior">
+                <div id="panel-acceso-rapido"></div>
+            </article>
+            <article class="tarjeta tarjeta--sesion">
+                <div id="panel-sesion"></div>
+                <div id="panel-vistas"></div>
+            </article>
+        </section>
+
+        <main class="workspace">
+            <section class="dashboard-shell">
+                <section class="dashboard-shell__principal">
+                    <section id="panel-tablero" class="tarjeta tarjeta--tablero tablero-destacado"></section>
+                    <article id="panel-vista-rol" class="tarjeta oculto"></article>
+                </section>
+
+                <aside class="dashboard-shell__lateral">
+                    <details class="tarjeta bloque-plegable" open>
+                        <summary class="bloque-plegable__cabecera">
+                            <div>
+                                <p class="bloque-titulo__kicker">Contexto</p>
+                                <h2>Insights rapidos</h2>
+                            </div>
+                            <span class="bloque-plegable__icono" aria-hidden="true"></span>
+                        </summary>
+                        <div id="panel-insights" class="lista-simple bloque-plegable__contenido"></div>
+                    </details>
+
+                    <details class="tarjeta bloque-plegable">
+                        <summary class="bloque-plegable__cabecera">
+                            <div>
+                                <p class="bloque-titulo__kicker">Gamificacion</p>
+                                <h2>Ranking de ayuda</h2>
+                            </div>
+                            <span class="bloque-plegable__icono" aria-hidden="true"></span>
+                        </summary>
+                        <div id="panel-ranking" class="lista-simple bloque-plegable__contenido"></div>
+                    </details>
+
+                    <details class="tarjeta bloque-plegable">
+                        <summary class="bloque-plegable__cabecera">
+                            <div>
+                                <p class="bloque-titulo__kicker">Seguimiento</p>
+                                <h2>Alertas y foco</h2>
+                            </div>
+                            <span class="bloque-plegable__icono" aria-hidden="true"></span>
+                        </summary>
+                        <div id="panel-alertas" class="lista-simple bloque-plegable__contenido"></div>
+                    </details>
+                </aside>
+            </section>
+        </main>
+    </div>
+
+    <script src="./config.js?v=20260527-ui5"></script>
+    <script src="./js/app.js?v=20260527-ui5"></script>
+</body>
+</html>
